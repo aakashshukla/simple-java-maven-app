@@ -8,16 +8,12 @@ pipeline {
     stages {
         stage('Build') {
             steps {
-	   	withEnv(['PATH+EXTRA=/usr/sbin:/usr/bin:/sbin:/bin']) {
-                	sh 'mvn -B -DskipTests clean install'
-	      	}
+                sh 'hello build'
             }
         }
         stage('Test') {
             steps {
-		withEnv(['PATH+EXTRA=/usr/sbin:/usr/bin:/sbin:/bin']) {
-                	sh 'mvn test'
-		}
+                sh 'hello test'
             }
             post {
                 always {
@@ -27,9 +23,7 @@ pipeline {
         }
         stage('Deliver') {
             steps {
-		withEnv(['PATH+EXTRA=/usr/sbin:/usr/bin:/sbin:/bin']) {
-	                sh './jenkins/scripts/deliver.sh'
-		}
+                sh './jenkins/scripts/deliver.sh'
             }
         }
     }
